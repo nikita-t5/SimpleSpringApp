@@ -1,7 +1,9 @@
 package ru.simpleSpringApp;
 
+import java.util.List;
+
 public class MusicPlayer {
-    private Music music;
+    private List<Music> musicList;
     private String name;
     private int volume;
     private float price;
@@ -18,8 +20,8 @@ public class MusicPlayer {
         this.price = price;
     }
 
-    public void setMusic(Music music) { //DI через setter
-        this.music = music;
+    public void setMusicList(List<Music> musicList) { //DI через setter
+        this.musicList = musicList;
     }
 
     public String getName() {
@@ -34,7 +36,9 @@ public class MusicPlayer {
         return price;
     }
 
-    public void playMusic() {
-        System.out.println("Playing " + music.getSong());
+    public void playMusicList() {
+        for(Music music : musicList){
+            System.out.println(music.getSong());
+        }
     }
 }
