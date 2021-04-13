@@ -3,8 +3,8 @@ package ru.simpleSpringApp;
 public class MusicPlayer {
     Music music;
 
-    public MusicPlayer(Music music) {
-        this.music = music; //DI
+    public MusicPlayer(Music music) { //DI через конструктор
+        this.music = music;
     }
 
     public void playMusic() {

@@ -11,4 +11,9 @@
           class="ru.simpleSpringApp.RockMusic">
     </bean>
 
+    <bean id="musicPlayer"
+          class="ru.simpleSpringApp.MusicPlayer">
+        <constructor-arg ref="musicBean"/> 
+    </bean>
+
 </beans>
