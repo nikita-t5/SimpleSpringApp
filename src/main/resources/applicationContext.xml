@@ -7,6 +7,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="musicPlayer.properties"/>
+
     <bean id="musicBean"
           class="ru.simpleSpringApp.RockMusic">
     </bean>
@@ -14,6 +16,9 @@
     <bean id="musicPlayer"
           class="ru.simpleSpringApp.MusicPlayer">
         <property name="music" ref="musicBean"/>
+        <property name="name" value="Some name"/>
+        <property name="volume" value="50"/>
+        <property name="price" value="${musicPlayer.price}"/>
     </bean>
 
 </beans>
