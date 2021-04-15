@@ -22,7 +22,7 @@
           class="ru.simpleSpringApp.JazzMusic">
     </bean>
 
-    <bean id="musicPlayer"
+    <bean id="musicPlayerSingleton"
           class="ru.simpleSpringApp.MusicPlayer">
         <property name="musicList">
             <list>
@@ -34,6 +34,12 @@
         <property name="name" value="Some name"/>
         <property name="volume" value="50"/>
         <property name="price" value="${musicPlayer.price}"/>
+    </bean>
+
+    <bean id="musicPlayerPrototype"
+          class="ru.simpleSpringApp.MusicPlayer"
+          scope="prototype">
+        <property name="volume" value="50"/>
     </bean>
 
 </beans>
