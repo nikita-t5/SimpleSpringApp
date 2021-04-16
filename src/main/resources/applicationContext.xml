@@ -8,22 +8,6 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="musicClassicalBean"
-          class="ru.simpleSpringApp.ClassicalMusic"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy">
-    </bean>
-
-    <bean id="musicRockBean"
-          class="ru.simpleSpringApp.RockMusic"
-          scope="prototype"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy">
-    </bean>
-
-    <bean id="musicJazzBean"
-          class="ru.simpleSpringApp.JazzMusic"
-          factory-method="getJazzMusic">
-    </bean>
+        <context:component-scan base-package="ru.simpleSpringApp"/>
 
 </beans>

@@ -6,21 +6,20 @@ public class TestSpring {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml");
-        ClassicalMusic firstClassicalMusic = context.getBean("musicClassicalBean", ClassicalMusic.class); //singleton. init()
-        System.out.println(firstClassicalMusic.getSong());//geySong()
 
-        RockMusic firstRockMusic = context.getBean("musicRockBean", RockMusic.class);//prototype. init()
-        System.out.println(firstRockMusic.getSong()); //geySong()
+        Music musicJazz = context.getBean("jazzMusic", Music.class);
+        Music musicClassical = context.getBean("classicalMusic", Music.class);
+        Music musicRock = context.getBean("rockMusic", Music.class);
 
-        ClassicalMusic secondClassicalMusic = context.getBean("musicClassicalBean", ClassicalMusic.class);//singleton. without init()
-        System.out.println(secondClassicalMusic.getSong());//geySong()
+        MusicPlayer musicPlayer1 = new MusicPlayer(musicJazz);
+        musicPlayer1.playMusic();
 
-        RockMusic secondRockMusic = context.getBean("musicRockBean", RockMusic.class);//prototype. init()
-        System.out.println(secondRockMusic.getSong()); //geySong()
+        MusicPlayer musicPlayer2 = new MusicPlayer(musicClassical);
+        musicPlayer2.playMusic();
 
-        JazzMusic jazzMusic = context.getBean("musicJazzBean", JazzMusic.class);//испо-ся фабричный метод
-        System.out.println(jazzMusic.getSong());
+        MusicPlayer musicPlayer3 = new MusicPlayer(musicRock);
+        musicPlayer3.playMusic();
 
-        context.close();//destroyClassicalMusic()
+        context.close();
     }
 }

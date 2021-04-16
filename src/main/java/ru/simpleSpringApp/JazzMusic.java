@@ -1,18 +1,12 @@
 package ru.simpleSpringApp;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class JazzMusic implements Music {
-
-    private JazzMusic() {
-    }
-
-    public static JazzMusic getJazzMusic() { //factory method
-        return new JazzMusic();
-    }
 
     @Override
     public String getSong() {
         return "Some Jazz music";
     }
-
-
 }
