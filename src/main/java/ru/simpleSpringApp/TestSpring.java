@@ -6,24 +6,21 @@ public class TestSpring {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml");
-        MusicPlayer firstMusicPlayerSingleton = context.getBean("musicPlayerSingleton", MusicPlayer.class);
-        MusicPlayer secondMusicPlayerSingleton = context.getBean("musicPlayerSingleton", MusicPlayer.class);
-        System.out.println(firstMusicPlayerSingleton == secondMusicPlayerSingleton);
-        System.out.println("Hash: " + firstMusicPlayerSingleton + "  " + secondMusicPlayerSingleton);
-        System.out.println("Volume: " + firstMusicPlayerSingleton.getVolume() + "  " + secondMusicPlayerSingleton.getVolume());
-        System.out.println("change volume");
-        firstMusicPlayerSingleton.setVolume(100);
-        System.out.println("Volume: " + firstMusicPlayerSingleton.getVolume() + "  " + secondMusicPlayerSingleton.getVolume());
-        System.out.println();
+        ClassicalMusic firstClassicalMusic = context.getBean("musicClassicalBean", ClassicalMusic.class); //singleton. init()
+        System.out.println(firstClassicalMusic.getSong());//geySong()
 
-        MusicPlayer firstMusicPlayerPrototype = context.getBean("musicPlayerPrototype", MusicPlayer.class);
-        MusicPlayer secondMusicPlayerPrototype = context.getBean("musicPlayerPrototype", MusicPlayer.class); //
-        System.out.println(firstMusicPlayerPrototype == secondMusicPlayerPrototype);
-        System.out.println("Hash: " + firstMusicPlayerPrototype + "  " + secondMusicPlayerPrototype);
-        System.out.println("Volume: " + firstMusicPlayerPrototype.getVolume() + "  " + secondMusicPlayerPrototype.getVolume());
-        System.out.println("change volume");
-        firstMusicPlayerPrototype.setVolume(100);
-        System.out.println("Volume: " + firstMusicPlayerPrototype.getVolume() + "  " + secondMusicPlayerPrototype.getVolume());
-        context.close();
+        RockMusic firstRockMusic = context.getBean("musicRockBean", RockMusic.class);//prototype. init()
+        System.out.println(firstRockMusic.getSong()); //geySong()
+
+        ClassicalMusic secondClassicalMusic = context.getBean("musicClassicalBean", ClassicalMusic.class);//singleton. without init()
+        System.out.println(secondClassicalMusic.getSong());//geySong()
+
+        RockMusic secondRockMusic = context.getBean("musicRockBean", RockMusic.class);//prototype. init()
+        System.out.println(secondRockMusic.getSong()); //geySong()
+
+        JazzMusic jazzMusic = context.getBean("musicJazzBean", JazzMusic.class);//испо-ся фабричный метод
+        System.out.println(jazzMusic.getSong());
+
+        context.close();//destroyClassicalMusic()
     }
 }

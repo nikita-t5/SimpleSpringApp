@@ -8,38 +8,22 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:property-placeholder location="musicPlayer.properties"/>
-
-    <bean id="musicRockBean"
-          class="ru.simpleSpringApp.RockMusic">
+    <bean id="musicClassicalBean"
+          class="ru.simpleSpringApp.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy">
     </bean>
 
-    <bean id="musicClassicalBean"
-          class="ru.simpleSpringApp.ClassicalMusic">
+    <bean id="musicRockBean"
+          class="ru.simpleSpringApp.RockMusic"
+          scope="prototype"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy">
     </bean>
 
     <bean id="musicJazzBean"
-          class="ru.simpleSpringApp.JazzMusic">
-    </bean>
-
-    <bean id="musicPlayerSingleton"
-          class="ru.simpleSpringApp.MusicPlayer">
-        <property name="musicList">
-            <list>
-                <ref bean="musicRockBean"></ref>
-                <ref bean="musicClassicalBean"></ref>
-                <ref bean="musicJazzBean"></ref>
-            </list>
-        </property>
-        <property name="name" value="Some name"/>
-        <property name="volume" value="50"/>
-        <property name="price" value="${musicPlayer.price}"/>
-    </bean>
-
-    <bean id="musicPlayerPrototype"
-          class="ru.simpleSpringApp.MusicPlayer"
-          scope="prototype">
-        <property name="volume" value="50"/>
+          class="ru.simpleSpringApp.JazzMusic"
+          factory-method="getJazzMusic">
     </bean>
 
 </beans>
